@@ -1,0 +1,14 @@
+- [x] LEF
+	- [ ] TEF
+		- [ ] CF
+		- [ ] PA
+	- [ ] Vuln
+		- [ ] TC
+		- [ ] RS
+- [x] LM
+	- [ ] SLEF
+	- [ ] SLM
+Usage:
+- [ ] CLI 
+- [ ] Documentation
+- [x] Loss Magnitude Data generation tooling
