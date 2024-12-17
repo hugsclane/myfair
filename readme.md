@@ -37,5 +37,5 @@ They are as follows:
 #### Loss Magnitude Distribution
 - PERT
 - Log-normal
--Generalised-Pareto
+- Generalised-Pareto
 
