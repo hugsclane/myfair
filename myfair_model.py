@@ -1,6 +1,7 @@
-# The intial structure planned was to create an appropriate 
-# distribution for each node on the risk tree. 
-# Then to corretly sum them up
+
+
+### TODO: HUGO - make the Model class, have it handle config correctly, and have it handle the kwargs from json and the CLI handled correclty.
+# actual tears
 
 from dis_gen import bernoulli_dist, binomial_dist, poisson_dist, pert_dist , lognormal_dist, genpareto_dist
 import random

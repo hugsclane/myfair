@@ -2,19 +2,20 @@ import argparse
 import myfair_model as mf
 from config import Config
 
-# parser = argparse.ArgumentParser(description="MyFair CLI")
+parser = argparse.ArgumentParser(description="MyFair CLI")
+parser.add_argument("--seed", type=int, default=42, help="Seed for random number generation")
+parser.add_argument("--rvs_size", type=int, default=1000, help="Number of random variables to generate")
 #   cli goes here
 
 
 ## this global definition is very temporary and will be replaced by the CLI
-__seed__ = 42
-__rvs_size__ = 1000
-
+seed = parser.parse_args().seed
+rvs_size = parser.parse_args().rvs_size
 
 #We will now call config."variable" to access the variables
 config = Config(
-    __seed__,
-    __rvs_size__
+    seed,
+    rvs_size
     )
 
 
@@ -57,7 +58,14 @@ config = Config(
 
 
 if __name__ == "__main__":
-    from config import Config
+    try:
+        if config is None:
+            raise ValueError("No configuration provided")
+    except:
+         config = Config(42,1000)
+
+   
+    
     mf.risk_calculator(
         lef_dist = {"dist":"binomial","plef":0.3,"n":30},
         mag_dist = {"dist":"lognormal","mean":1,"sigma":1},
