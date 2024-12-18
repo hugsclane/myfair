@@ -26,7 +26,17 @@ Additionally if you would like to explore distributions used to produce the data
 ## Usage:
 - [ ] CLI 
 - [ ] Documentation
-- [x] Loss Magnitude Data generation tooling
+- [x] Loss Magnitude Data generation tooling.
+
+##### On the data generation tooling.
+A data structure and a method is demonstrated in lm_est.py, 
+its purpose is to show how data input would be handeled by this tool.
+
+It also the interface through which a data generation tool would be parsed to produce
+data defined by real world costs as opposed to a distribution.
+
+This kind of structure could be a solution to interfacing other data points, I.e. vuln, tc, rs ,cf, pa.
+
 At the moment it can only handle modeling a few distributions. 
 
 They are as follows:

@@ -2,7 +2,7 @@ import argparse
 import myfair_model as mf
 
 # parser = argparse.ArgumentParser(description="MyFair CLI")
-#cli goes here
+#   cli goes here
 
 
 def main():
@@ -47,5 +47,7 @@ def main():
 #       }
 #   }
 #   all value are non-negative integers in dollar ammounts other than time_period
+
+
 if __name__ == "__main__":
     pass
