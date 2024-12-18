@@ -3,11 +3,41 @@
 
 ### Usage Guide
 For now the only way you can interact with Myfair is by editing the `main()` function
-in `myfair_model.py` and running  `python myfair_model.py` from your terminal.
+in `main.py` and running  `python main.py` from your terminal.
 
-See notes in `main()`
+I highly recommend reading at least briefly the `myfail_model.py` file, There are a tonne of comments that should answer most of your questions.
 
 Additionally if you would like to explore distributions used to produce the data, calling `python dis_gen.py` will show you either a probabilty frequency function or a probability density function for each distribution.
+
+below is a sutible ways of calling the FAIRModel class
+
+```
+   new_model.gen_risk_dist(
+
+        lef_dist = {"dist":"binomial","plef":0.3,"n":30},
+
+        mag_dist = {"dist":"lognormal","mean":1,"sigma":1},
+
+        n_simulations = 1000
+   
+   )
+
+```
+Loss Event Frequency distriubtions can be populated by passing a dictionary in these shapes:
+
+```
+	{dist : bernoulli, plef: float < 1}
+	{dist : binomial, plef: float < 1, n: int > 0}
+	{dist : poisson, lmbda: float > 0, size: int > 0}
+```
+
+Loss Event Magnitude distributions can be populated by passing a dictionary in these shapes:
+
+```
+	{dist : pert, min: int, mode: int, max: int}
+	{dist : lognormal, mean: float, sigma: float}
+	{dist : genpareto, c: float}
+```
 
 ### Progress Map
 
@@ -18,7 +48,7 @@ This was developed as a demo ignoring some scalable best practices, I am aware t
 
 ### Model Functionality
 - [x] LEF
-	- [ ] TEF
+	- [x] TEF
 		- [ ] CF
 		- [ ] PA
 	- [ ] Vuln

@@ -1,22 +1,21 @@
 import argparse
-import myfair_model as mf
-from config import Config
+from myfair_model import FAIRModel
+# from config import Config
 
 parser = argparse.ArgumentParser(description="MyFair CLI")
-parser.add_argument("--seed", type=int, default=42, help="Seed for random number generation")
-parser.add_argument("--rvs_size", type=int, default=1000, help="Number of random variables to generate")
+
+args = parser.parse_args()
 #   cli goes here
 
 
-## this global definition is very temporary and will be replaced by the CLI
-seed = parser.parse_args().seed
-rvs_size = parser.parse_args().rvs_size
-
 #We will now call config."variable" to access the variables
-config = Config(
-    seed,
-    rvs_size
-    )
+# config = Config(
+#     placeholder = None
+    #-----------------------
+    # some sort of initial options for the model are going to be setup here
+    # inluding a file path for the yet to be written jsonfile
+    # -----------------------
+    # )
 
 
 ## -----------------------
@@ -58,17 +57,33 @@ config = Config(
 
 
 if __name__ == "__main__":
-    try:
-        if config is None:
-            raise ValueError("No configuration provided")
-    except:
-         config = Config(42,1000)
 
-   
-    
-    mf.risk_calculator(
+    ## -----------------------
+    # Funny way to drive config
+    # python is a silly language
+    # try:
+    #     if config is None:
+    #         raise ValueError("No configuration provided")
+    # except:
+    #      config = Config(42,1000)
+    ## -----------------------
+    new_model = FAIRModel()
+
+
+    ### -----------------------
+    # CHANGE THE VALUES BELOW TO TEST
+    new_model.gen_risk_dist(
+
         lef_dist = {"dist":"binomial","plef":0.3,"n":30},
+
         mag_dist = {"dist":"lognormal","mean":1,"sigma":1},
-        n_simulations = 1000)
+
+        n_simulations = 1000
+        )
+    ### -----------------------
+
+
+    new_model.show_exceedance_curve()
+
     
     pass
