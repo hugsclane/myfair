@@ -108,10 +108,10 @@ if __name__ == "__main__":
     ## -----------------------
     # This will output a loss exceedance curve
     # ------------------------
-    risk_calculator(
-        lef_dist = {"dist":"binomial","plef":0.3,"n":30},
-        mag_dist = {"dist":"lognormal","mean":1,"sigma":1},
-        n_simulations = 1000)
+    # risk_calculator(
+    #     lef_dist = {"dist":"binomial","plef":0.3,"n":30},
+    #     mag_dist = {"dist":"lognormal","mean":1,"sigma":1},
+    #     n_simulations = 1000)
     
     # risk_calculator( 
     #     lef_dist = {"dist":"poisson","lmbda":3,"size":20},
@@ -124,3 +124,4 @@ if __name__ == "__main__":
     #     lef_dist = {"dist":"bernoulli","plef":0.3},
     #     mag_dist = {"dist":"pert","min":100,"mode":25_000,"max":1_000_000},
     #     n_simulations = 1000)
+    pass

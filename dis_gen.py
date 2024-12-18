@@ -4,6 +4,7 @@ from scipy.stats import bernoulli, binom, poisson , genpareto
 import matplotlib.pyplot as plt 
 import numpy as np 
 import seaborn as sns
+from config import Config
 
 
 #Someone implemented a Beta-PERT distribution in python with almost identical
@@ -15,14 +16,11 @@ from pert import PERT
 ## what contiunous data would look like, It does make the pmf look better.
 # from scipy.optimize import curve_fit
 
-
-__seed__ = 42
-__rvs_size__ = 10000
-
-
 #---------------------------------------
 # Loss Event Frequency (LEF) Distributions
 #---------------------------------------
+
+            
 
 
 def bernoulli_dist(p,show_stats=False):
@@ -49,7 +47,7 @@ def bernoulli_dist(p,show_stats=False):
         ax.legend(loc='best', frameon=False)
         plt.show()
 
-    return bernoulli_data.rvs(size=__rvs_size__,random_state=__seed__)
+    return bernoulli_data.rvs(size=config.rvs_size,random_state=config.seed)
 
 
 
@@ -76,7 +74,7 @@ def binomial_dist(p,n,show_stats=False):
                 label='frozen pmf')
         ax.legend(loc='best', frameon=False)
         plt.show()
-    return binomial_data.rvs(size=__rvs_size__, random_state=__seed__)
+    return binomial_data.rvs(size=config.rvs_size, random_state=config.seed)
 
 
 #-----------------------
@@ -89,7 +87,7 @@ def binomial_dist(p,n,show_stats=False):
 def poisson_dist(lmbda,show_stats=False):
     poisson_data = poisson(lmbda)
     if show_stats:
-        sns.kdeplot(poisson_data.rvs(__rvs_size__), fill=True)
+        sns.kdeplot(poisson_data.rvs(config.rvs_size), fill=True)
         plt.title('Probabilty Mass Distribution')
         plt.xlabel('Loss Event Frequency')
         plt.ylabel('Density')
@@ -106,7 +104,7 @@ def poisson_dist(lmbda,show_stats=False):
         #         label='frozen pmf')
         # ax.legend(loc='best', frameon=False)
         # plt.show()
-    return poisson_data.rvs(size=__rvs_size__, random_state=__seed__)
+    return poisson_data.rvs(size=config.rvs_size, random_state=config.seed)
 
 
 #---------------------------------------
@@ -117,16 +115,16 @@ def pert_dist(min,mode,max,show_stats=False):
     #PERT distribution is used to model loss magnitude
     pert_data = PERT(min,mode,max)
     if show_stats:
-        sns.kdeplot(pert_data.rvs(__rvs_size__,__seed__), fill=True)
+        sns.kdeplot(pert_data.rvs(config.rvs_size,config.seed), fill=True)
         plt.title('Loss Magnitude Distribution')
         plt.xlabel('Loss Magnitude')
         plt.ylabel('Density')
         plt.show()
-    return pert_data.rvs(__rvs_size__)
+    return pert_data.rvs(config.rvs_size)
 
 def lognormal_dist(mean,sigma,show_stats=False):
     #Lognormal distribution is used to model loss magnitude
-    lognormal_data = np.random.lognormal(mean,sigma,__rvs_size__)
+    lognormal_data = np.random.lognormal(mean,sigma,config.rvs_size)
     if show_stats:
         sns.kdeplot(lognormal_data, fill=True)
         plt.title('Loss Magnitude Distribution')
@@ -139,18 +137,20 @@ def genpareto_dist(c,show_stats=False):
     #not fully implemented yet
     genpareto_data = genpareto(c)
     if show_stats:
-        genpareto_samples = genpareto_data.rvs(__rvs_size__, random_state=__seed__)
+        genpareto_samples = genpareto_data.rvs(config.rvs_size, random_state=config.seed)
         sns.kdeplot(genpareto_samples, fill=True)
         plt.title('Loss Magnitude Distribution')
         plt.xlabel('Loss Magnitude')
         plt.ylabel('Density')
         plt.show()
-    return genpareto_data.rvs(__rvs_size__,random_state=__seed__)
+    return genpareto_data.rvs(config.rvs_size,random_state=config.seed)
 
 
 
 if __name__ == "__main__":
-
+    config = Config(
+        42
+        ,1000)
     ber_p = 0.2
     bernoulli_dist(ber_p,show_stats=True)
     
@@ -160,7 +160,7 @@ if __name__ == "__main__":
     binomial_dist(bi_p,n_loss_events,show_stats=True)
     
     lmbda = 3
-    poisson_dist(lmbda,20,show_stats=True)
+    poisson_dist(lmbda,show_stats=True)
 
     min = 10
     mode = 30

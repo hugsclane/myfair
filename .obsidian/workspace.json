@@ -163,5 +163,8 @@
     }
   },
   "active": "a57640f6b08ee613",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "__pycache__/config.cpython-311.pyc",
+    "config.py"
+  ]
 }

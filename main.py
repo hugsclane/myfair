@@ -1,14 +1,21 @@
 import argparse
 import myfair_model as mf
+from config import Config
 
 # parser = argparse.ArgumentParser(description="MyFair CLI")
 #   cli goes here
 
 
-def main():
+## this global definition is very temporary and will be replaced by the CLI
+__seed__ = 42
+__rvs_size__ = 1000
 
 
-    pass
+#We will now call config."variable" to access the variables
+config = Config(
+    __seed__,
+    __rvs_size__
+    )
 
 
 ## -----------------------
@@ -50,4 +57,10 @@ def main():
 
 
 if __name__ == "__main__":
+    from config import Config
+    mf.risk_calculator(
+        lef_dist = {"dist":"binomial","plef":0.3,"n":30},
+        mag_dist = {"dist":"lognormal","mean":1,"sigma":1},
+        n_simulations = 1000)
+    
     pass
