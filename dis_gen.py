@@ -86,7 +86,7 @@ def binomial_dist(plef,n,show_stats=False):
 #poisson distribution follows the the
 #expected number of loss events over the time horizion t 
 #so lambda is in the form of events per events per unit time.
-def poisson_dist(lmbda,size,show_stats=False):
+def poisson_dist(lmbda,show_stats=False):
     poisson_data = poisson(lmbda)
     if show_stats:
         sns.kdeplot(poisson_data.rvs(__rvs_size__), fill=True)
@@ -160,7 +160,7 @@ if __name__ == "__main__":
     binomial_dist(bi_plef,n_loss_events,show_stats=True)
     
     lmbda = 3
-    poisson_dist(lmbda,20,show_stats=True)
+    poisson_dist(lmbda,show_stats=True)
 
     min = 10
     mode = 30
