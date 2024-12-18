@@ -1,8 +1,5 @@
 # MyFAIR
-Below is a map of progress made on MyFAIR with the following features planned.
-For now the output is an loss exceedance curve based on the FAIR model.
 
-This was developed as a demo ignoring some scalable best practices, I am aware that there are some shortcomings in not using interfaces but the scale of the project doesn't require them just yet.
 
 ### Usage Guide
 For now the only way you can interact with Myfair is by editing the `main()` function
@@ -11,6 +8,13 @@ in `myfair_model.py` and running  `python myfair_model.py` from your terminal.
 See notes in `main()`
 
 Additionally if you would like to explore distributions used to produce the data, calling `python dis_gen.py` will show you either a probabilty frequency function or a probability density function for each distribution.
+
+### Progress Map
+
+Below is a map of progress made on MyFAIR with the following features planned.
+For now the output is an loss exceedance curve based on the FAIR model.
+
+This was developed as a demo ignoring some scalable best practices, I am aware that there are some shortcomings in not using interfaces but the scale of the project doesn't require them just yet.
 
 ### Model Functionality
 - [x] LEF
@@ -27,6 +31,8 @@ Additionally if you would like to explore distributions used to produce the data
 - [ ] CLI 
 - [ ] Documentation
 - [x] Loss Magnitude Data generation tooling.
+
+### Notes
 
 ##### On the data generation tooling.
 A data structure and a method is demonstrated in lm_est.py, 
