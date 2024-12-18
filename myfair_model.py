@@ -8,9 +8,17 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 def risk_calculator(**kwargs):
-    #our loss event is 
-    lef_dist,mag_dist = gen_lef_dist(kwargs.get("lef_dist")),gen_mag_dist(kwargs.get("mag_dist"))
-    risk_dist = monte_carlo_sim(lef_dist,mag_dist,kwargs.get("n_simulations"))
+    ## -----------------------
+    # Create distributions for Loss Event Frequency (LEF) and Magnitude (MAG)
+    # ------------------------
+    # first we check which kwargs are provided and then we generate the appropriate distribution
+    if kwargs.get("lef_decomposed") == True:
+        #NOTE: here that if lef_decomposed is not in kwargs, this will assert false.
+        lef_dist = lef_from_tef_vuln()
+        ## we will
+    else:
+        lef_dist,mag_dist = gen_lef_dist(kwargs.get("lef_dist")),gen_mag_dist(kwargs.get("mag_dist"))
+        risk_dist = monte_carlo_sim(lef_dist,mag_dist,kwargs.get("n_simulations"))
     sns.set(style="whitegrid")
     risk_sorted = sorted(risk_dist, reverse=True)
     exceedance_prob = [(i + 1) / len(risk_sorted) for i in range(len(risk_sorted))]
@@ -47,11 +55,13 @@ def gen_mag_dist(dist_dict):
     else: 
         raise ValueError("Invalid distribution type")
 
-
-
+def gen_tef_dist(dist_dict):
+    
+    pass
 
 
 def gen_lef_dist(dist_dict):
+
     ## -----------------------
     #   lef_dist has the following shape
     #       {dist : bernoulli, plef: float < 1}
