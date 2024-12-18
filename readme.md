@@ -2,6 +2,8 @@
 Below is a map of progress made on MyFAIR with the following features planned.
 For now the output is an loss exceedance curve based on the FAIR model.
 
+This was developed as a demo ignoring some scalable best practices, I am aware that there are some shortcomings in not using interfaces but the scale of the project doesn't require them just yet.
+
 ### Usage Guide
 For now the only way you can interact with Myfair is by editing the `main()` function
 in `myfair_model.py` and running  `python myfair_model.py` from your terminal.

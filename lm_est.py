@@ -3,7 +3,7 @@ import numpy as np
 def incident_loss(**kwargs):
     ## -----------------------
     # this is a helper function that can handle some json input from kwargs and process it into a loss event
-    # can be used to generate a handful of loss events.
+    # can be used to generate a handful of losses from events..
 
     ## -----------------------
     #   incident loss returns a tuple structured as follows
