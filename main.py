@@ -1,14 +1,21 @@
 import argparse
-import myfair_model as mf
+from myfair_model import FAIRModel
+# from config import Config
 
-# parser = argparse.ArgumentParser(description="MyFair CLI")
+parser = argparse.ArgumentParser(description="MyFair CLI")
+
+args = parser.parse_args()
 #   cli goes here
 
 
-def main():
-
-
-    pass
+#We will now call config."variable" to access the variables
+# config = Config(
+#     placeholder = None
+    #-----------------------
+    # some sort of initial options for the model are going to be setup here
+    # inluding a file path for the yet to be written jsonfile
+    # -----------------------
+    # )
 
 
 ## -----------------------
@@ -50,4 +57,33 @@ def main():
 
 
 if __name__ == "__main__":
+
+    ## -----------------------
+    # Funny way to drive config
+    # python is a silly language
+    # try:
+    #     if config is None:
+    #         raise ValueError("No configuration provided")
+    # except:
+    #      config = Config(42,1000)
+    ## -----------------------
+    new_model = FAIRModel()
+
+
+    ### -----------------------
+    # CHANGE THE VALUES BELOW TO TEST
+    new_model.gen_risk_dist(
+
+        lef_dist = {"dist":"binomial","plef":0.3,"n":30},
+
+        mag_dist = {"dist":"lognormal","mean":1,"sigma":1},
+
+        n_simulations = 1000
+        )
+    ### -----------------------
+
+
+    new_model.show_exceedance_curve()
+
+    
     pass

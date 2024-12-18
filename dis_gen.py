@@ -25,7 +25,7 @@ __rvs_size__ = 10000
 #---------------------------------------
 
 
-def bernoulli_dist(plef,show_stats=False):
+def bernoulli_dist(p,show_stats=False):
 
 #Applicable if loss event only occurs once over the time horizon
 #Bernoulli distribution follows Probabilty loss event frequency
@@ -33,7 +33,7 @@ def bernoulli_dist(plef,show_stats=False):
     # There are many more efficient ways to genereate
     # identically distriubted random variables, the use of scipy
     # is to demonstrate methodolgy
-    bernoulli_data = bernoulli(plef)
+    bernoulli_data = bernoulli(p)
     if show_stats:
         #From the scipy documentation, used to check if distribution is correct (eye balling)
         mean, var, skew, kurt = bernoulli_data.stats(moments='mvsk')
@@ -43,7 +43,7 @@ def bernoulli_dist(plef,show_stats=False):
         fig, ax = plt.subplots(1, 1)
         ax.plot(x, bernoulli_data.pmf(x), 'bo', ms=8, label='bernoulli pmf')
         ax.vlines(x, 0, bernoulli_data.pmf(x), colors='b', lw=5, alpha=0.5)
-        rv = bernoulli(plef)
+        rv = bernoulli(p)
         ax.vlines(x, 0, rv.pmf(x), colors='k', linestyles='-', lw=1,
             label='frozen pmf')
         ax.legend(loc='best', frameon=False)
@@ -61,11 +61,11 @@ def bernoulli_dist(plef,show_stats=False):
 # and the number of loss opportunities.
 
 
-def binomial_dist(plef,n,show_stats=False):
-    binomial_data = binom(n=n, p=plef)
+def binomial_dist(p,n,show_stats=False):
+    binomial_data = binom(n=n, p=p)
     if show_stats: 
         #From the scipy documentation, used to check if distribution is correct (eye balling)
-        mean, var, skew, kurt = binom.stats(n, plef, moments='mvsk')
+        mean, var, skew, kurt = binom.stats(n, p, moments='mvsk')
         print("Binomial Distribution Stats:")
         print("Mean: " + str(mean) + "\nVariance: " + str(var) + "\nSkewness: " + str(skew) + "\nKurtosis: " + str(kurt) + "\n")
         fig, ax = plt.subplots(1, 1)
@@ -151,13 +151,13 @@ def genpareto_dist(c,show_stats=False):
 
 if __name__ == "__main__":
 
-    ber_plef = 0.2
-    bernoulli_dist(ber_plef,show_stats=True)
+    ber_p = 0.2
+    bernoulli_dist(ber_p,show_stats=True)
     
 
-    bi_plef = 0.4
+    bi_p = 0.4
     n_loss_events = 20
-    binomial_dist(bi_plef,n_loss_events,show_stats=True)
+    binomial_dist(bi_p,n_loss_events,show_stats=True)
     
     lmbda = 3
     poisson_dist(lmbda,show_stats=True)
