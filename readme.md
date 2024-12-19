@@ -5,7 +5,7 @@
 For now the only way you can interact with Myfair is by editing the `main()` function
 in `main.py` and running  `python main.py` from your terminal.
 
-I highly recommend reading at least briefly the `myfail_model.py` file, There are a tonne of comments that should answer most of your questions.
+I highly recommend reading at least briefly the `myfair_model.py` file, There are a tonne of comments that should answer most of your questions.
 
 Additionally if you would like to explore distributions used to produce the data, calling `python dis_gen.py` will show you either a probabilty frequency function or a probability density function for each distribution.
 
