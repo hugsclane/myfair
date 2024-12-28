@@ -2,3 +2,4 @@ __pycache__/
 .gitattributes
 *.py[cod]
 *.DS_Store
+.obsidian/
