@@ -1,0 +1,21 @@
+[project]
+name = "myfair"
+version = "0.1.0"
+description = "Implementation of OpenFAIR process"
+authors = [
+    {name = "hugsclane",email = "mail.hugocl@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "scipy (==1.15.1)",
+    "seaborn (==0.13.2)",
+    "matplotlib (==3.10.0)",
+    "pandas (==2.2.3)",
+    "pertdist (>=0.1.1,<0.2.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
