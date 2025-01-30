@@ -23,7 +23,7 @@ args = parser.parse_args()
 #   time_period is in unit times "years"
 #   incident_loss kwargs = {
 #       "productivity_loss": {
-#           "time_period": 1, 
+#           "time_period": 1,
 #           "revenue_loss": 0,
 #           "wages_loss": 0
 #       },
@@ -81,9 +81,5 @@ if __name__ == "__main__":
         n_simulations = 1000
         )
     ### -----------------------
-
-
     new_model.show_exceedance_curve()
-
-    
     pass

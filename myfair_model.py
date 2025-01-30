@@ -25,7 +25,7 @@ class FAIRModel:
     def show_exceedance_curve(self):
         if self.risk_dist == None:
             raise ValueError("No risk distribution provided, Try running gen_risk_dist first")
-        
+
         sns.set(style="whitegrid")
         # Sort the risk values in descending order
         risk_sorted = sorted(self.risk_dist, reverse=True)
@@ -65,7 +65,7 @@ class FAIRModel:
 
         self.risk_dist = self.monte_carlo_sim(self.lef_dist,self.mag_dist,kwargs.get("n_simulations"))
         return self.risk_dist
-    
+
 
     def gen_tef_dist(self,dist_dict):
 
@@ -81,21 +81,21 @@ class FAIRModel:
 
         if dist_dict == None:
             raise ValueError("No distribution provided, Check your input or kwargs")
-        
+
         dist = dist_dict.get("dist")
         if dist == "linear":
-            ## For my sanity, 
+            ## For my sanity,
             # this is just an integer because this is the specific number of
             # times a threat even will occur over the time period
             # it make total sense to return an integer here, stop worrying about it.
             return dist_dict.get("N")
-        
+
         elif dist == "binomial":
             return binomial_dist(dist_dict.get("ptef"),dist_dict.get("n"))
-        
+
         elif dist == "poisson":
             return poisson_dist(dist_dict.get("lmbda"))
-        
+
         else:
             raise ValueError("Invalid distribution type")
 
@@ -113,14 +113,14 @@ class FAIRModel:
 
         if dist == "pert":
             return pert_dist(dist_dict.get("min"), dist_dict.get("mode"), dist_dict.get("max"))
-        
+
         elif dist == "lognormal":
             return lognormal_dist(dist_dict.get("mean"), dist_dict.get("sigma"))
-        
+
         elif dist == "genpareto":
             return genpareto_dist(dist_dict.get("c"))
-        
-        else: 
+
+        else:
             raise ValueError("Invalid distribution type")
 
     def gen_lef_dist(self,dist_dict):
@@ -132,21 +132,21 @@ class FAIRModel:
         ## -----------------------
         if dist_dict == None:
             raise ValueError("No distribution provided, Check your input or kwargs")
-        
+
         dist = dist_dict.get("dist")
 
         if dist == "bernoulli":
             return bernoulli_dist(dist_dict.get("plef"))
-        
+
         elif dist == "binomial":
             return binomial_dist(dist_dict.get("plef"), dist_dict.get("n"))
-        
+
         elif dist == "poisson":
             return poisson_dist(dist_dict.get("lmbda"), dist_dict.get("size"))
-        
-        else: 
+
+        else:
             raise ValueError("Invalid distribution type")
-        
+
 
     ## -----------------------
     #  Helper functions
@@ -166,18 +166,21 @@ class FAIRModel:
         #:TODO: implement this function
         # Guide on page 22 of the FAIR book
         # 3.1.1.1 Decomposing Loss Event Frequency, Table 1: Mapping Threat Event Frequency (TEF) to Loss Event Frequency (LEF)
-        
+
         return
-    
+
     def vulnerability(self, tcap,rs):
-    
+    ## Monte Carlo Method allows us to use code existing in the dis_gen.py file
+    ## the integration method is a more relibale way to prdouce the vulnerability feature.
+
+
     ##-----------------------
     # integration method
     ##-----------------------
     #  is the probabilty that TCap is greater than resitance
     #  tcap is the threat capability
     #  rs is the resistance
-    #  our equation is either 
+    #  our equation is either
     # the definite integral of xmin to xmax for f_Tcap(x) * F_RS(x) dx
     # where
     # tcap has a probailty density of f_Tcap(x)
@@ -191,26 +194,26 @@ class FAIRModel:
     # input: f_tcap, F_rs
     # output: float
     ##-----------------------
-    
+
     ##-----------------------
     # monte carlo method
     ##-----------------------
-    # threat_success = 0
-    # threat_fail = 0
-    # for i in range(k):
-    #     if randomsample(TCap)> randomsample(RS):
-    #         threat_success += 1
-    #     else:
-    #         threat_fail += 1
-    # return threat_success/(threat_success + threat_fail)
+        threat_success = 0
+        threat_fail = 0
+        for i in range(k):
+            if random(tcap)> random(rs):
+                threat_success += 1
+            else:
+                threat_fail += 1
+        return threat_success/(threat_success + threat_fail)
     ##-o-o-o-o-o-o-o-o-o-o-o-
     # input: t_cap_dist, rs_dist
     # output: float
     ##-----------------------
-    
+
     #placeholder
         return 0.2
-    
+
 
 if __name__ == "__main__":
 
@@ -223,12 +226,12 @@ if __name__ == "__main__":
     #print(new_model.vulnerability(0.5,[0.1,0.2,0.3,0.4,0.5]))
 
 
-    # risk_calculator(
+    #u risk_calculator(
     #     lef_dist = {"dist":"binomial","plef":0.3,"n":30},
     #     mag_dist = {"dist":"lognormal","mean":1,"sigma":1},
     #     n_simulations = 1000)
 
-    # risk_calculator( 
+    # risk_calculator(
     #     lef_dist = {"dist":"poisson","lmbda":3,"size":20},
     #     mag_dist = {"dist":"pert","min":100,"mode":25_000,"max":1_000_000},
     #     n_simulations = 1000)

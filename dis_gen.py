@@ -1,8 +1,8 @@
 
 
 from scipy.stats import bernoulli, binom, poisson , genpareto
-import matplotlib.pyplot as plt 
-import numpy as np 
+import matplotlib.pyplot as plt
+import numpy as np
 import seaborn as sns
 
 
@@ -55,15 +55,15 @@ def bernoulli_dist(p,show_stats=False):
 
 # #-----------------------
 
-#loss event occurs finite number of times, each opportunity has 
-#the probability 
+#loss event occurs finite number of times, each opportunity has
+#the probability
 #binomial distribution follows the Probabilty loss event frequency
 # and the number of loss opportunities.
 
 
 def binomial_dist(p,n,show_stats=False):
     binomial_data = binom(n=n, p=p)
-    if show_stats: 
+    if show_stats:
         #From the scipy documentation, used to check if distribution is correct (eye balling)
         mean, var, skew, kurt = binom.stats(n, p, moments='mvsk')
         print("Binomial Distribution Stats:")
@@ -80,11 +80,11 @@ def binomial_dist(p,n,show_stats=False):
 
 
 #-----------------------
-#loss event occurs and independent of the 
+#loss event occurs an independent of the
 #number of throughout the timeperiod
 
 #poisson distribution follows the the
-#expected number of loss events over the time horizion t 
+#expected number of loss events over the time horizion t
 #so lambda is in the form of events per events per unit time.
 def poisson_dist(lmbda,show_stats=False):
     poisson_data = poisson(lmbda)
@@ -148,30 +148,44 @@ def genpareto_dist(c,show_stats=False):
     return genpareto_data.rvs(__rvs_size__,random_state=__seed__)
 
 
+def culmulative_dist(data = None):
+    if data == None:
+        data = np.random.randn(__rvs_size__)
+    x = np.sort(data)
+
+    y = np.arange(len(data))/float(len(data))
+
+    plt.xlabel('x-axis')
+    plt.ylabel('y-axis')
+    plt.plot(x,y, marker='o', linestyle='--')
+    print(len(data))
+    plt.show()
+
+
 
 if __name__ == "__main__":
 
-    ber_p = 0.2
-    bernoulli_dist(ber_p,show_stats=True)
-    
+    # ber_p = 0.2
+    # bernoulli_dist(ber_p,show_stats=True)
 
-    bi_p = 0.4
-    n_loss_events = 20
-    binomial_dist(bi_p,n_loss_events,show_stats=True)
-    
-    lmbda = 3
-    poisson_dist(lmbda,show_stats=True)
+    # bi_p = 0.4
+    # n_loss_events = 20
+    # binomial_dist(bi_p,n_loss_events,show_stats=True)
 
-    min = 10
-    mode = 30
-    max = 200
+    # lmbda = 3
+    # poisson_dist(lmbda,show_stats=True)
 
-    pert_dist(min,mode,max,show_stats=True)
-    
-    mu = 0
-    sigma = 1
-    lognormal_dist(mu,sigma,show_stats=True)
+    # min = 10
+    # mode = 30
+    # max = 200
 
-    c = 0.1
-    genpareto_dist(c,show_stats=True)
+    # pert_dist(min,mode,max,show_stats=True)
+
+    # mu = 0
+    # sigma = 1
+    # lognormal_dist(mu,sigma,show_stats=True)
+
+    # c = 0.1
+    # genpareto_dist(c,show_stats=True)
+    culmulative_dist()
     pass

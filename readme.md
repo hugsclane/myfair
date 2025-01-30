@@ -19,7 +19,7 @@ below is a sutible ways of calling the FAIRModel class
         mag_dist = {"dist":"lognormal","mean":1,"sigma":1},
 
         n_simulations = 1000
-   
+
    )
 
 ```
@@ -58,14 +58,14 @@ This was developed as a demo ignoring some scalable best practices, I am aware t
 	- [ ] SLEF
 	- [ ] SLM
 ## Usage:
-- [ ] CLI 
+- [ ] CLI
 - [ ] Documentation
 - [x] Loss Magnitude Data generation tooling.
 
 ### Notes
 
 ##### On the data generation tooling.
-A data structure and a method is demonstrated in lm_est.py, 
+A data structure and a method is demonstrated in lm_est.py,
 its purpose is to show how data input would be handeled by this tool.
 
 It also the interface through which a data generation tool would be parsed to produce
@@ -73,7 +73,7 @@ data defined by real world costs as opposed to a distribution.
 
 This kind of structure could be a solution to interfacing other data points, I.e. vuln, tc, rs ,cf, pa.
 
-At the moment it can only handle modeling a few distributions. 
+At the moment it can only handle modeling a few distributions.
 
 They are as follows:
 

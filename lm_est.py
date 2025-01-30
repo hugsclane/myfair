@@ -15,14 +15,14 @@ def incident_loss(**kwargs):
     time_period = kwargs.get('time_period', 1)
     revenue_loss = kwargs.get('revenue_loss', 0)
     wages_loss = kwargs.get('wages_loss', 0)
-    
+
     ##---------------------------------------
     #fine_judgement kwargs
     fines = kwargs.get('fines', 0)
     class_actions = kwargs.get('class_actions', 0)
     bail = kwargs.get('Bail', 0)
     legal_fees = kwargs.get('legal_fees', 0)
-    
+
     ##---------------------------------------
     #response_loss kwargs
     marketsshare_loss = kwargs.get('marketsshare_loss', 0)
@@ -44,7 +44,7 @@ def incident_loss(**kwargs):
     management_cost = kwargs.get('management_cost', 0)
     customer_notification = kwargs.get('customer_notification', 0)
     credit_monitoring = kwargs.get('credit_monitoring', 0)
-    
+
 
     primary_losses = (
         productivity_loss(time_period,revenue_loss,wages_loss) +
@@ -57,7 +57,7 @@ def incident_loss(**kwargs):
         competitive_loss(ip_loss, trade_secret_loss, merger_acquisition_data, market_data) +
         reputation(marketsshare_loss, lower_sales_growth, stock_price_losses, increased_cost_of_capital) +
         fines_and_judgements(fines, class_actions, bail, legal_fees)
-    ) 
+    )
 
     return (primary_losses + secondary_losses, primary_losses, secondary_losses)
 
@@ -67,7 +67,7 @@ def incident_loss(**kwargs):
 def fines_and_judgements(fines, class_actions, Bail, legal_fees):
     rand = np.random.randint(0,100)
     ## I'm using mod numbers to simulate randomness, its just for fun, any random distribution can be used
-    ## additionally seconday loss frequency should be its own distribution function, 
+    ## additionally seconday loss frequency should be its own distribution function,
     ## but that is outside of the scope of this demo
 
     if rand % 50 != 0:
@@ -77,7 +77,7 @@ def fines_and_judgements(fines, class_actions, Bail, legal_fees):
     else:
         fines = fines * 0.5
     if rand != 0:
-        Bail = 0 
+        Bail = 0
     if rand > 50 :
         fines, class_actions, legal_fees = 0, 0, 0
     #fines and judgements are calculated in dollars
@@ -85,7 +85,7 @@ def fines_and_judgements(fines, class_actions, Bail, legal_fees):
 
 def reputation(marketsshare_loss, lower_sales_growth, stock_price_losses, increased_cost_of_capital):
     #reputation loss is calculated in dollars
-   
+
     loss = marketsshare_loss + lower_sales_growth + stock_price_losses + increased_cost_of_capital
     rand = np.random.randint(0,1)
 
@@ -105,7 +105,7 @@ def competitive_loss(ip_loss, trade_secret_loss, merger_acquisition_data, market
 # Primary Loss Contributions
 
 def productivity_loss(time_period=1, revenue_loss = 25_000, wages_loss = 5_000 ):
-    #productivty loss is calculated in dollars over the unit years. 
+    #productivty loss is calculated in dollars over the unit years.
     return time_period*(revenue_loss + wages_loss)
 
 def response_loss(incident_response_cost, forensic_analysis_cost , management_cost , customer_notification , credit_monitoring ):
